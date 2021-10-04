@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
+
 
 namespace I7S4ED_negyedik
 {
@@ -15,11 +18,17 @@ namespace I7S4ED_negyedik
         RealEstateEntities context = new RealEstateEntities();
         List<Flat> Flats;
 
+        
+
         public Form1()
         {
             InitializeComponent();
             LoadData();
+
+            
         }
+
+       
 
         private void LoadData()
         {
