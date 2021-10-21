@@ -41,7 +41,7 @@ namespace UserMainenance
         {
             SaveFileDialog sfd = new SaveFileDialog();
 
-            if (sfd.ShowDialog() != DialogResult.OK) return;
+            //if (sfd.ShowDialog() != DialogResult.OK) return;
 
             using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8)) 
             {
