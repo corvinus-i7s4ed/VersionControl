@@ -1,4 +1,5 @@
-﻿using I7S4ED_hatodik.MnbServiceReference;
+﻿using I7S4ED_hatodik.Entities;
+using I7S4ED_hatodik.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,13 @@ namespace I7S4ED_hatodik
 {
     public partial class Form1 : Form
     {
+        BindingList<RateData> Rates = new BindingList<RateData>();
+
         public Form1()
         {
             InitializeComponent();
             GetExchange();
+            dataGridView1.DataSource = Rates;
         }
 
         private static void GetExchange()
