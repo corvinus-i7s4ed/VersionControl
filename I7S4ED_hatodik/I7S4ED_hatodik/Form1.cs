@@ -1,4 +1,5 @@
-﻿using System;
+﻿using I7S4ED_hatodik.MnbServiceReference;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,23 @@ namespace I7S4ED_hatodik
         public Form1()
         {
             InitializeComponent();
+            GetExchange();
+        }
+
+        private static void GetExchange()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+
+            var request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = "EUR",
+                startDate = "2020-01-01",
+                endDate = "2020-06-30"
+            };
+
+            var response = mnbService.GetExchangeRates(request);
+
+            var result = response.GetExchangeRatesResult;
         }
     }
 }
