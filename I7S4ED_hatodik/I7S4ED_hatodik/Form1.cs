@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace I7S4ED_hatodik
@@ -21,7 +22,9 @@ namespace I7S4ED_hatodik
         {
             InitializeComponent();
             GetExchange();
+            DataChart();
             dataGridView1.DataSource = Rates;
+            
         }
 
         public void GetExchange()
@@ -62,6 +65,25 @@ namespace I7S4ED_hatodik
             }
         }
 
+        public void DataChart()
+        {
+            chart1.DataSource = Rates;
+
+            var series = chart1.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legends = chart1.Legends[0];
+            legends.Enabled = false;
+
+            var chartArea = chart1.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
+
+        }
        
     }
 }
