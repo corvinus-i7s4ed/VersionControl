@@ -21,30 +21,41 @@ namespace I7S4ED_hatodik
         public Form1()
         {
             InitializeComponent();
-            GetExchange();
-            DataChart();
-            dataGridView1.DataSource = Rates;
-            
+            RefreshData();
         }
 
-        public void GetExchange()
+        private void RefreshData()
         {
-            var mnbService = new MNBArfolyamServiceSoapClient();
+            Rates.Clear();
+            string xmlstring = Consume();
+            LoadXml(xmlstring);
+            dataGridView1.DataSource = Rates;
+            Charting();
+        }
 
-            var request = new GetExchangeRatesRequestBody()
-            {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
-            };
+        private void Charting()
+        {
+            chartRateData.DataSource = Rates;
 
-            var response = mnbService.GetExchangeRates(request);
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
 
-            var result = response.GetExchangeRatesResult;
+            var legends = chartRateData.Legends[0];
+            legends.Enabled = false;
 
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
+        }
 
+        private void LoadXml(string input)
+        {
             var xml = new XmlDocument();
-            xml.LoadXml(result);
+            xml.LoadXml(input);
 
             foreach (XmlElement element in xml.DocumentElement)
             {
@@ -58,32 +69,46 @@ namespace I7S4ED_hatodik
 
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
                 var value = decimal.Parse(childElement.InnerText);
-                if (unit !=0)
+                if (unit != 0)
                 {
                     rate.Value = value / unit;
                 }
             }
         }
 
-        public void DataChart()
+        public string Consume()
         {
-            chart1.DataSource = Rates;
+           
 
-            var series = chart1.Series[0];
-            series.ChartType = SeriesChartType.Line;
-            series.XValueMember = "Date";
-            series.YValueMembers = "Value";
-            series.BorderWidth = 2;
+            var mnbService = new MNBArfolyamServiceSoapClient();
 
-            var legends = chart1.Legends[0];
-            legends.Enabled = false;
+            var request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = comboBox1.SelectedItem.ToString(),
+                startDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+                endDate = dateTimePicker2.Value.ToString("yyyy-MM-dd")
+            };
 
-            var chartArea = chart1.ChartAreas[0];
-            chartArea.AxisX.MajorGrid.Enabled = false;
-            chartArea.AxisY.MajorGrid.Enabled = false;
-            chartArea.AxisY.IsStartedFromZero = false;
+            var response = mnbService.GetExchangeRates(request);
+
+            string result = response.GetExchangeRatesResult;
+            return result;
 
         }
-       
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
     }
 }
