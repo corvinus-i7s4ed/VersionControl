@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace I7S4ED_nyolcadik.Entities
 {
-    class BallFactory
+    public class BallFactory
     {
         public Ball CreateNew()
         {

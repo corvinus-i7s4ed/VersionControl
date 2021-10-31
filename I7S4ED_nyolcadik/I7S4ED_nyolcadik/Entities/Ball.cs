@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace I7S4ED_nyolcadik.Entities
 {
-    class Ball : Label
+    public class Ball : Label
     {
         public Ball()
         {
