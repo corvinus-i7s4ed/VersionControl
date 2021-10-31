@@ -26,7 +26,7 @@ namespace I7S4ED_nyolcadik.Abstractions
         protected abstract void DrawImage(Graphics g);
              
 
-        public virtual void ToyBall()
+        public virtual void MoveToy()
         {
             Left += 1;
         }
