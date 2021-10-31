@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace I7S4ED_nyolcadik.Entities
 {
-    class Car : Toy
+    public class Car : Toy
     {
         protected override void DrawImage(Graphics g)
         {
