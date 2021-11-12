@@ -95,5 +95,14 @@ namespace I7S4ED_nyolcadik
                 return;
             button.BackColor = colorPicker.Color;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                Color1 = button4.BackColor,
+                Color2 = button5.BackColor
+            };
+        }
     }
 }

@@ -37,6 +37,9 @@ namespace I7S4ED_nyolcadik
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnColor = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -60,7 +63,7 @@ namespace I7S4ED_nyolcadik
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 29);
+            this.button1.Location = new System.Drawing.Point(12, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 72);
             this.button1.TabIndex = 1;
@@ -70,7 +73,7 @@ namespace I7S4ED_nyolcadik
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(109, 29);
+            this.button2.Location = new System.Drawing.Point(109, 9);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(76, 72);
             this.button2.TabIndex = 2;
@@ -81,7 +84,7 @@ namespace I7S4ED_nyolcadik
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(208, 29);
+            this.label1.Location = new System.Drawing.Point(292, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 17);
             this.label1.TabIndex = 3;
@@ -90,18 +93,51 @@ namespace I7S4ED_nyolcadik
             // btnColor
             // 
             this.btnColor.BackColor = System.Drawing.Color.Lime;
-            this.btnColor.Location = new System.Drawing.Point(109, 113);
+            this.btnColor.Location = new System.Drawing.Point(109, 93);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(75, 25);
             this.btnColor.TabIndex = 4;
             this.btnColor.UseVisualStyleBackColor = false;
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(201, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(85, 72);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "PRESENT";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Lime;
+            this.button4.Location = new System.Drawing.Point(201, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 25);
+            this.button4.TabIndex = 6;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.btnColor_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Lime;
+            this.button5.Location = new System.Drawing.Point(201, 124);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(85, 25);
+            this.button5.TabIndex = 7;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.btnColor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnColor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
@@ -123,6 +159,9 @@ namespace I7S4ED_nyolcadik
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnColor;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 
