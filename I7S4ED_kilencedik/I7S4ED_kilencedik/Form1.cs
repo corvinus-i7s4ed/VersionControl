@@ -18,17 +18,39 @@ namespace I7S4ED_kilencedik
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
         Random rng = new Random(1234);
+        
+
+        string filePath;
+        int currentMales;
+        int currentFemales;
+        int currentYear;
+
 
         public Form1()
         {
             InitializeComponent();
-            Population = GetPopulation(@"C:\Temp\nép-teszt.csv");
+            
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            
+        }
+
+        private void DisplayResults()
+        {
+            richTextBox1.Text += (String.Format("Szimulációs év: {0}\n\tFiúk:\t{1}\n\tLányok:\t{2}\n\n", currentYear, currentMales, currentFemales));
+        }
+
+        private void Simulation()
+        {
+
+
+            richTextBox1.Clear();
 
             // Végigmegyünk a vizsgált éveken
-            for (int year = 2005; year <= 2024; year++)
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
+               
+
                 // Végigmegyünk az összes személyen
                 for (int i = 0; i < Population.Count; i++)
                 {
@@ -43,9 +65,15 @@ namespace I7S4ED_kilencedik
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
                 Console.WriteLine("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales);
+
+                currentMales = nbrOfMales;
+                currentFemales = nbrOfFemales;
+                currentYear = year;
+
+
+                DisplayResults();
             }
         }
-
 
         private void SimStep(int year, Person person)
         {
@@ -144,7 +172,27 @@ namespace I7S4ED_kilencedik
             return deathProbabilities;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            Population = GetPopulation(textBox1.Text);
+            Simulation();
+            
+            
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.InitialDirectory = @"C:\Temp";
+                ofd.Filter = "CSV (*.csv)|*csv";
+                if (ofd.ShowDialog() == DialogResult.OK) filePath=ofd.FileName;
+               
+            }
+
+             textBox1.Text = filePath;
+        }
     }
 
    
