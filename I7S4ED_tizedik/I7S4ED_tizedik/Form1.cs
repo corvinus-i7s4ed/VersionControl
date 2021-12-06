@@ -22,6 +22,8 @@ namespace I7S4ED_tizedik
 
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
+            gc.AddPlayer();
+            gc.Start(true);
         }
     }
 }
